@@ -1,12 +1,22 @@
-"use strict";
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-var _express = _interopRequireDefault(require("express"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
-//CREATE APP
-var app = (0, _express["default"])();
-//SERVE A STATIC PAGE IN THE PUBLIC DIRECTORY
-app.use(_express["default"]["static"]("public"));
-//PORT TO LISTEN TO
-app.listen(1337, function () {
-  console.log("Listening on localhost:1337");
+// CREATE APP
+const app = express();
+
+// SERVE STATIC FILES FROM THE PUBLIC DIRECTORY
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'public')));
+
+// SERVE INDEX.HTML FOR ALL ROUTES
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'frontend', 'public', 'index.html'));
+});
+
+// PORT TO LISTEN TO
+const PORT = process.env.PORT || 1337;
+app.listen(PORT, () => {
+  console.log(`Listening on localhost:${PORT}`);
 });

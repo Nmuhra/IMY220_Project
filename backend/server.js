@@ -1,8 +1,23 @@
-import express from "express";//CREATE APP
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// CREATE APP
 const app = express();
-//SERVE A STATIC PAGE IN THE PUBLIC DIRECTORY
-app.use(express.static("public"));
-//PORT TO LISTEN TO
-app.listen(1337, () => {
-console.log("Listening on localhost:1337");
+
+// SERVE STATIC FILES FROM THE PUBLIC DIRECTORY
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'public')));
+
+// SERVE INDEX.HTML FOR ALL ROUTES
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', '..', 'frontend', 'public', 'index.html'));
+});
+
+// PORT TO LISTEN TO
+const PORT = process.env.PORT || 1337;
+app.listen(PORT, () => {
+    console.log(`Listening on localhost:${PORT}`);
 });

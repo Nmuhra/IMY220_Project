@@ -1,11 +1,14 @@
 import React from 'react';
+import Splash from './pages/Splash.js'
 
-const App = () => {
-  return (
-    <div>
-      <h1>Welcome to tuneMe</h1>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Splash />
+      </div>
+    ); 2
+  }
 };
 
 export default App;

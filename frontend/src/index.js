@@ -1,13 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-class Greeting extends React.Component{
-render(){
-return (
-<div>
-<h2> Hello React! </h2>
-</div>
-);
-}
-}
+import App from './App.js'
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Greeting />);
+root.render(<App />);

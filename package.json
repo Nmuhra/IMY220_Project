@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "frontend/src/index.js",
+  "type": "module",
   "scripts": {
     "build": "webpack && babel backend/server.js -d backend/dist",
-    "start": "npm run build && node backend/dist/server.js"
+    "start": "npm run build && node --experimental-specifier-resolution=node backend/dist/server.js"
   },
   "author": "",
   "license": "ISC",
