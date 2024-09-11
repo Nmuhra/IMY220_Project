@@ -1,5 +1,5 @@
 import React from 'react';
-import Splash from './pages/Splash.js'
+import Splash from './pages/Splash.js';
 
 class App extends React.Component {
   render() {
@@ -7,7 +7,7 @@ class App extends React.Component {
       <div>
         <Splash />
       </div>
-    ); 2
+    );
   }
 };
 
