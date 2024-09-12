@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Music } from 'lucide-react';
+import './styles/Splash.css';
+import Login from '../components/Login.js';
 
 class Splash extends Component {
     render() {
@@ -14,8 +16,8 @@ class Splash extends Component {
                 </div>
 
                 <div className="button-container">
-                    <button className="login-button">Login</button>
-                    <button className="register-button">Register</button>
+                    <a href='/login'><button className="login-button">Login</button></a>
+                    <a href='/register'><button className="register-button">Register</button></a>
                 </div>
             </div>
         );

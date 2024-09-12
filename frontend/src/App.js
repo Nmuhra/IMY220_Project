@@ -1,12 +1,19 @@
 import React from 'react';
 import Splash from './pages/Splash.js';
-
+import Login from './components/Login.js';
+import Register from './components/Register.js';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <Splash />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Splash />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+        </Routes>
+      </BrowserRouter >
+
     );
   }
 };
