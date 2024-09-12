@@ -1,0 +1,109 @@
+.home-container {
+    font-family: Arial, sans-serif;
+    margin-top: 60px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.logo,
+.search-bar {
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+}
+
+.nav-buttons button {
+    margin: 0 5px;
+}
+
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    display: flex;
+}
+
+.friends-list {
+    width: 200px;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.friend-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playlists {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-playlist {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    border: none;
+    font-size: 20px;
+
+}
+
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+}
+
+.playlist-item {
+    aspect-ratio: 1;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+
+}
+
+.show-more {
+    display: block;
+    margin: 20px auto 0;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}

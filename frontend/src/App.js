@@ -1,5 +1,7 @@
 import React from 'react';
 import Splash from './pages/Splash.js';
+import Home from './pages/Home.js';
+
 import Login from './components/Login.js';
 import Register from './components/Register.js';
 import Song from './components/Song.js';
@@ -17,6 +19,7 @@ class App extends React.Component {
         <Navbar />
         <Routes>
           <Route path='/' element={<Splash />} />
+          <Route path='/home' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route
