@@ -6,25 +6,29 @@
     padding: 12px;
     font-family: Arial, sans-serif;
     border-radius: 5px;
-    ;
+    width: fit-content;
 }
 
 .song-image {
-    width: 56px;
-    height: 56px;
+    width: 200px;
+    height: 200px;
     background-color: white;
     margin-right: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    border-radius: 10px;
+    ;
 }
 
 .song-image img {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
+
 
 .song-info {
     flex-grow: 1;
