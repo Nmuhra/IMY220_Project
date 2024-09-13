@@ -1,6 +1,8 @@
 import React from 'react';
 import PlaylistPreview from '../components/PlaylistPreview.js';
 import FriendList from '../components/FriendList.js';
+import ProfileSettings from '../components/ProfileSettings.js';
+import CreatePlaylist from '../components/CreatePlaylist.js';
 import './styles/Profile.css';
 
 class Profile extends React.Component {
@@ -10,6 +12,9 @@ class Profile extends React.Component {
             user: {
                 name: 'John Danaher',
                 image: '',
+                email: 'john.danaher@example.com',
+                birthdate: '1986-03-15',
+                country: 'United States',
                 following: 382,
                 followers: 32
             },
@@ -110,6 +115,15 @@ class Profile extends React.Component {
         this.setState({ currentView: view });
     }
 
+    handleProfileUpdate = (updatedUser) => {
+        this.setState({ user: { ...this.state.user, ...updatedUser } });
+    }
+
+    handlePlaylistCreation = (newPlaylist) => {
+        this.setState(prevState => ({
+            playlists: [...prevState.playlists, newPlaylist]
+        }));
+    }
     render() {
         const { user, playlists, currentView, following, followers } = this.state;
 
@@ -130,6 +144,8 @@ class Profile extends React.Component {
                         <li className={currentView === 'playlists' ? 'active' : ''} onClick={() => this.handleNavClick('playlists')}>PUBLIC PLAYLISTS</li>
                         <li className={currentView === 'following' ? 'active' : ''} onClick={() => this.handleNavClick('following')}>FOLLOWING ({user.following})</li>
                         <li className={currentView === 'followers' ? 'active' : ''} onClick={() => this.handleNavClick('followers')}>FOLLOWERS ({user.followers})</li>
+                        <li className={currentView === 'settings' ? 'active' : ''} onClick={() => this.handleNavClick('settings')}>SETTINGS</li>
+                        <li className={currentView === 'create-playlist' ? 'active' : ''} onClick={() => this.handleNavClick('create-playlist')}>CREATE PLAYLIST</li>
                     </ul>
                 </nav>
 
@@ -184,6 +200,14 @@ class Profile extends React.Component {
 
                 {currentView === 'followers' && (
                     <FriendList friends={followers} type="Followers" />
+                )}
+
+                {currentView === 'settings' && (
+                    <ProfileSettings user={user} onUpdateProfile={this.handleProfileUpdate} />
+                )}
+
+                {currentView === 'create-playlist' && (
+                    <CreatePlaylist onCreatePlaylist={this.handlePlaylistCreation} />
                 )}
             </div>
         );
