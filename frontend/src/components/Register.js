@@ -8,7 +8,12 @@ class Register extends Component {
         this.state = {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            errors: {
+                username: '',
+                email: '',
+                password: ''
+            }
         };
     }
 
@@ -16,13 +21,48 @@ class Register extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
+    validateForm = () => {
+        const { username, email, password } = this.state;
+        let errors = { username: '', email: '', password: '' };
+        let isValid = true;
+
+        // Username validation: must be at least 3 characters
+        if (username.trim().length < 3) {
+            errors.username = 'Username must be at least 3 characters long';
+            isValid = false;
+        }
+
+        // Email validation: must be a valid email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errors.email = 'Please enter a valid email address';
+            isValid = false;
+        }
+
+        // Password validation: must be at least 6 characters
+        if (password.length < 6) {
+            errors.password = 'Password must be at least 6 characters long';
+            isValid = false;
+        }
+
+        this.setState({ errors });
+        return isValid;
+    };
+
     handleSubmit = (e) => {
         e.preventDefault();
-        // Here you would typically handle the registration logic
-        console.log('Registration submitted', this.state);
+
+        if (this.validateForm()) {
+            // Proceed with registration logic (e.g., API call)
+            console.log('Registration successful', this.state);
+        } else {
+            console.log('Validation failed');
+        }
     };
 
     render() {
+        const { username, email, password, errors } = this.state;
+
         return (
             <div className="register-container">
                 <div className="register-form">
@@ -40,30 +80,33 @@ class Register extends Component {
                                 type="text"
                                 name="username"
                                 placeholder="Username"
-                                value={this.state.username}
+                                value={username}
                                 onChange={this.handleChange}
                                 required
                             />
+                            {errors.username && <p className="error">{errors.username}</p>}
                         </div>
                         <div className="form-group">
                             <input
                                 type="email"
                                 name="email"
                                 placeholder="Email"
-                                value={this.state.email}
+                                value={email}
                                 onChange={this.handleChange}
                                 required
                             />
+                            {errors.email && <p className="error">{errors.email}</p>}
                         </div>
                         <div className="form-group">
                             <input
                                 type="password"
                                 name="password"
                                 placeholder="Password"
-                                value={this.state.password}
+                                value={password}
                                 onChange={this.handleChange}
                                 required
                             />
+                            {errors.password && <p className="error">{errors.password}</p>}
                         </div>
                         <button type="submit" className="register-button">Register</button>
                     </form>
