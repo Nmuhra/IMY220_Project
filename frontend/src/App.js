@@ -2,6 +2,8 @@ import React from 'react';
 import Splash from './pages/Splash.js';
 import Home from './pages/Home.js';
 import Profile from './pages/Profile.js';
+import PlaylistPage from './pages/PlaylistPage.js';
+
 
 import Login from './components/Login.js';
 import Register from './components/Register.js';
@@ -24,6 +26,7 @@ class App extends React.Component {
           <Route path='/' element={<Splash />} />
           <Route path='/home' element={<Home />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/playlist' element={<PlaylistPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route

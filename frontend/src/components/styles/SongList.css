@@ -1,0 +1,37 @@
+.song-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.song-list th,
+.song-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.song-list th {
+    font-weight: bold;
+    color: #888;
+}
+
+.song-list tr:hover {
+    background-color: #f5f5f5;
+}
+
+.song-list .playing {
+    background-color: #e6f7ff;
+}
+
+.play-pause-button,
+.more-options-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.play-pause-button:hover,
+.more-options-button:hover {
+    color: #1db954;
+}
