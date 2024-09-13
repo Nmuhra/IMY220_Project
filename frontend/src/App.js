@@ -1,15 +1,18 @@
 import React from 'react';
 import Splash from './pages/Splash.js';
 import Home from './pages/Home.js';
+import Profile from './pages/Profile.js';
 
 import Login from './components/Login.js';
 import Register from './components/Register.js';
 import Song from './components/Song.js';
 import AddSong from './components/AddSong.js';
 import PlaylistPreview from './components/PlaylistPreview.js';
-import ProfilePreview from './components/profilePreview.js';
+import ProfilePreview from './components/ProfilePreview.js';
 import Navbar from './components/Navbar.js';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import imagePath from './assets/images/jimi.jpg'
 import avatarPath from './assets/images/avatar.png'
 class App extends React.Component {
@@ -20,6 +23,7 @@ class App extends React.Component {
         <Routes>
           <Route path='/' element={<Splash />} />
           <Route path='/home' element={<Home />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route
@@ -54,7 +58,7 @@ class App extends React.Component {
           />
           <Route path="/addsong" element={<AddSong />} />
 
-          <Route path='/profile' element={<ProfilePreview
+          <Route path='/profilepreview' element={<ProfilePreview
             avatarUrl={avatarPath}
             username="John"
             friendsCount="100" />} />

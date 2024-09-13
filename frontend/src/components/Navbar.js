@@ -16,7 +16,7 @@ class Navbar extends Component {
 
                     <a href="/home"><Home size={24} /></a>
                     <Search size={24} />
-                    <User size={24} />
+                    <a href='/profile'><User size={24} /></a>
                 </div>
             </nav>
 
