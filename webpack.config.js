@@ -35,5 +35,12 @@ export default {
     },
     resolve: {
         extensions: ['.js', '.jsx'],
-    }
+    },
+    devServer: {
+        contentBase: './dist',
+        hot: true,
+        proxy: {
+          '/api': 'http://localhost:1337'
+        }
+      }
 };
