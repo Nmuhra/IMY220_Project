@@ -9,11 +9,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // SERVE STATIC FILES FROM THE PUBLIC DIRECTORY
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'public')));
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'public')));
 
 // SERVE INDEX.HTML FOR ALL ROUTES
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', '..', 'frontend', 'public', 'index.html'));
 });
 
 // PORT TO LISTEN TO
