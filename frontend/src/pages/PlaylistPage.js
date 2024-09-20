@@ -5,6 +5,8 @@ import SongList from '../components/SongList.js';
 import EditPlaylist from '../components/EditPlaylist.js';
 import CommentList from '../components/CommentList.js';
 import AddComment from '../components/AddComment.js';
+import Navbar from '../components/Navbar.js';
+
 
 class PlaylistPage extends React.Component {
     constructor(props) {
@@ -57,6 +59,7 @@ class PlaylistPage extends React.Component {
 
         return (
             <div className="playlist-page">
+                <Navbar />
                 {isEditing ? (
                     <EditPlaylist
                         playlist={playlist}

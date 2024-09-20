@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Music, Home, Search, User, ListMusic } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import '../pages/styles/Splash.css'; // Make sure this path is correct
+import './styles/Navbar.css'; // Make sure this path is correct
 
 class Navbar extends Component {
     constructor(props) {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PlaylistPreview from '../components/PlaylistPreview.js';
+import Navbar from '../components/Navbar.js';
 import './styles/Home.css';
 
 class Home extends Component {
@@ -97,6 +98,7 @@ class Home extends Component {
 
         return (
             <div className="home-container">
+                <Navbar />
                 <main>
                     <aside className="friends-list">
                         <h2>Friends</h2>

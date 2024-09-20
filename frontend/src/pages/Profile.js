@@ -3,6 +3,7 @@ import PlaylistPreview from '../components/PlaylistPreview.js';
 import FriendList from '../components/FriendList.js';
 import ProfileSettings from '../components/ProfileSettings.js';
 import CreatePlaylist from '../components/CreatePlaylist.js';
+import Navbar from '../components/Navbar.js';
 import './styles/Profile.css';
 
 class Profile extends React.Component {
@@ -129,6 +130,7 @@ class Profile extends React.Component {
 
         return (
             <div className="profile-container">
+                <Navbar />
                 <header className="profile-header">
                     <div className="profile-image">
                         <img src='/assets/images/avatar.png' alt={user.name} />

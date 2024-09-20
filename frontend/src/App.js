@@ -21,7 +21,6 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path='/' element={<Splash />} />
           <Route path='/home' element={<Home />} />
