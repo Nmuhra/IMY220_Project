@@ -1,12 +1,15 @@
 .form-container {
-  width: 320px;
+  width: 20%;
   border-radius: 0.75rem;
-  background-image: linear-gradient(90deg, #070116, #a9609a);
+  background-image: linear-gradient(90deg, #432a6c, #a9609a);
   padding: 2rem;
   color: rgba(243, 244, 246, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-
 
 .title {
   text-align: center;
