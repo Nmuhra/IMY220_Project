@@ -67,12 +67,7 @@ class Register extends Component {
             <div className="register-container">
                 <div className="register-form">
                     <div className="register-header">
-                        <div className="logo">
-                            <svg viewBox="0 0 24 24" width="24" height="24">
-                                <path d="M3 22l6-6 3 3 6-6 6 6V2H3z" fill="currentColor" />
-                            </svg>
-                        </div>
-                        <h2>Register for TuneMe</h2>
+                        <h2>Register</h2>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
