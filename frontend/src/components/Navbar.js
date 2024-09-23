@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Music, Home, Search, User, ListMusic } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import './styles/Navbar.css'; // Make sure this path is correct
+import './styles/Navbar.css';
 
 class Navbar extends Component {
     constructor(props) {
@@ -35,7 +35,6 @@ class Navbar extends Component {
                         value={this.state.searchQuery}
                         onChange={this.handleSearchChange}
                     />
-                    <button type="submit"><Search size={20} /></button>
                 </form>
                 <div className="navbar-links">
                     <Link to="/home"><Home size={24} /></Link>
