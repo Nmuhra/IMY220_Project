@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../services/authService.js';
 import { Music2 } from 'lucide-react';
 import './styles/login.css';
 
 const Login = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [errors, setErrors] = useState({ username: '', password: '' });
+	const [errors, setErrors] = useState({ username: '', password: '', general: '' });
+	const navigate = useNavigate();
 
-	// Validate form fields on submit
-	const validateForm = (e) => {
+	// Validate form fields and submit
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let isValid = true;
-		let newErrors = { username: '', password: '' };
+		let newErrors = { username: '', password: '', general: '' };
 
 		// Username validation: must be at least 3 characters
 		if (username.trim().length < 3) {
@@ -28,29 +31,56 @@ const Login = () => {
 		// Update errors in state
 		setErrors(newErrors);
 
-		// If validation passes, log the user in (dummy implementation here)
+		// If validation passes, attempt login
 		if (isValid) {
-			alert('Login successful!');
-			// Proceed with login logic (e.g., API call)
+			try {
+				const response = await login(username, password);
+				// Store user data
+				localStorage.setItem('user', JSON.stringify(response.data.user));
+				// Redirect to home page
+				navigate('/home');
+			} catch (err) {
+				setErrors(prev => ({
+					...prev,
+					general: err.message || 'Login failed. Please check your credentials.'
+				}));
+			}
 		}
 	};
 
 	return (
 		<div className="form-container">
 			<p className="title">Login</p>
-			<form className="form">
+			<form className="form" onSubmit={handleSubmit}>
 				<div className="input-group">
-					<label for="username">Username</label>
-					<input type="text" name="username" id="username" placeholder="" />
+					<label htmlFor="username">Username</label>
+					<input
+						type="text"
+						name="username"
+						id="username"
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						placeholder=""
+					/>
+					{errors.username && <span className="error-message">{errors.username}</span>}
 				</div>
 				<div className="input-group">
-					<label for="password">Password</label>
-					<input type="password" name="password" id="password" placeholder="" />
+					<label htmlFor="password">Password</label>
+					<input
+						type="password"
+						name="password"
+						id="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						placeholder=""
+					/>
+					{errors.password && <span className="error-message">{errors.password}</span>}
 					<div className="forgot">
 						<a rel="noopener noreferrer" href="#">Forgot Password ?</a>
 					</div>
 				</div>
-				<button className="sign">Sign in</button>
+				{errors.general && <div className="error-message general">{errors.general}</div>}
+				<button type="submit" className="sign">Sign in</button>
 			</form>
 			<div className="social-message">
 				<div className="line"></div>
