@@ -4,7 +4,11 @@ import FriendList from '../components/FriendList.js';
 import ProfileSettings from '../components/ProfileSettings.js';
 import CreatePlaylist from '../components/CreatePlaylist.js';
 import Navbar from '../components/Navbar.js';
-import { getUser } from '../services/userService.js';
+import {
+    getUser,
+    updateUser,
+    createPlaylist as createPlaylistService
+} from '../services/userService.js';
 import './styles/Profile.css';
 
 const Profile = () => {
@@ -13,7 +17,6 @@ const Profile = () => {
     const [error, setError] = useState(null);
     const [currentView, setCurrentView] = useState('overview');
 
-    // Missing calculateDuration function
     const calculateDuration = (songs = []) => {
         return songs.reduce((total, song) => total + (song.duration || 0), 0);
     };
@@ -26,8 +29,8 @@ const Profile = () => {
                     throw new Error('User ID not found');
                 }
 
-                const response = await getUser(userId);
-                setUserData(response.data);
+                const data = await getUser(userId);
+                setUserData(data.data);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -40,26 +43,7 @@ const Profile = () => {
 
     const handleProfileUpdate = async (updatedUser) => {
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error('Authentication token not found');
-            }
-
-            const response = await fetch(`/api/users/${userData?._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(updatedUser)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to update profile');
-            }
-
-            const data = await response.json();
+            const data = await updateUser(userData._id, updatedUser);
             setUserData(data.data);
         } catch (err) {
             setError(err.message);
@@ -68,28 +52,10 @@ const Profile = () => {
 
     const handlePlaylistCreation = async (newPlaylist) => {
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                throw new Error('Authentication token not found');
-            }
-
-            const response = await fetch('/api/playlists', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(newPlaylist)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to create playlist');
-            }
-
+            await createPlaylistService(newPlaylist);
             // Refresh user data to get updated playlists
-            const updatedUserData = await getUser(userData._id);
-            setUserData(updatedUserData.data);
+            const updatedData = await getUser(userData._id);
+            setUserData(updatedData.data);
         } catch (err) {
             setError(err.message);
         }
