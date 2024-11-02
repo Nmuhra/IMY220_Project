@@ -53,11 +53,11 @@ class Home extends Component {
                         <div className="playlist-grid">
                             {playlists.map(playlist => (
                                 <PlaylistPreview
-                                    key={playlist._id}  // Use _id as the unique key
+                                    key={playlist._id}  // Using MongoDB's _id as the unique key
                                     image={playlist.image || '/assets/images/playlist.png'}
                                     title={playlist.title}
                                     artist={playlist.artist}
-                                    album={playlist.album}
+                                    createdBy={playlist.creator}
                                     songsCount={playlist.songsCount}
                                     duration={playlist.duration}
                                     plays={playlist.plays}

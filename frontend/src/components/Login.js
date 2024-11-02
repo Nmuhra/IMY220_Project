@@ -10,43 +10,42 @@ const Login = () => {
 	const [errors, setErrors] = useState({ username: '', password: '', general: '' });
 	const navigate = useNavigate();
 
-	// Validate form fields and submit
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let isValid = true;
 		let newErrors = { username: '', password: '', general: '' };
 
-		// Username validation: must be at least 3 characters
+		// Username and Password validation
 		if (username.trim().length < 3) {
 			newErrors.username = 'Username must be at least 3 characters long';
 			isValid = false;
 		}
-
-		// Password validation: must be at least 6 characters
 		if (password.length < 6) {
 			newErrors.password = 'Password must be at least 6 characters long';
 			isValid = false;
 		}
-
-		// Update errors in state
 		setErrors(newErrors);
 
-		// If validation passes, attempt login
-		if (isValid) {
-			try {
-				const response = await login(username, password);
-				// Store user data
-				localStorage.setItem('user', JSON.stringify(response.data.user));
-				// Redirect to home page
-				navigate('/home');
-			} catch (err) {
-				setErrors(prev => ({
-					...prev,
-					general: err.message || 'Login failed. Please check your credentials.'
-				}));
-			}
+		try {
+			const response = await login(username, password);
+			console.log(response); // Check the full response object here
+
+			const { token, user } = response.data; // Ensure this matches the actual response structure
+
+			localStorage.setItem('token', token);
+			localStorage.setItem('userId', user.id);
+			console.log(localStorage);
+			navigate('/home');
+		} catch (err) {
+			setErrors(prev => ({
+				...prev,
+				general: err.message || 'Login failed. Please check your credentials.'
+			}));
 		}
+
 	};
+
+
 
 	return (
 		<div className="form-container">

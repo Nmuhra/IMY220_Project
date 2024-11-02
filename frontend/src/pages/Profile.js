@@ -1,219 +1,208 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PlaylistPreview from '../components/PlaylistPreview.js';
 import FriendList from '../components/FriendList.js';
 import ProfileSettings from '../components/ProfileSettings.js';
 import CreatePlaylist from '../components/CreatePlaylist.js';
 import Navbar from '../components/Navbar.js';
+import { getUser } from '../services/userService.js';
 import './styles/Profile.css';
 
-class Profile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: {
-                name: 'John Danaher',
-                image: '',
-                email: 'john.danaher@example.com',
-                birthdate: '1986-03-15',
-                country: 'United States',
-                following: 382,
-                followers: 32
-            },
-            playlists: [
-                {
-                    id: 1,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'My Favorite Tracks',
-                    artist: 'John Danaher',
-                    album: 'Various',
-                    songsCount: 25,
-                    duration: '1h 32m',
-                    plays: 1500
-                },
-                {
-                    id: 2,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'Classic Rock Anthems',
-                    artist: 'Various Artists',
-                    album: 'Best of Rock',
-                    songsCount: 30,
-                    duration: '2h 15m',
-                    plays: 2300
-                },
-                {
-                    id: 3,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'Lo-Fi Chill Beats',
-                    artist: 'Lo-Fi Collective',
-                    album: 'Chill Vibes',
-                    songsCount: 50,
-                    duration: '3h 10m',
-                    plays: 3200
-                },
-                {
-                    id: 4,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'Top Pop Hits',
-                    artist: 'Various Artists',
-                    album: 'Pop Sensations',
-                    songsCount: 40,
-                    duration: '2h 50m',
-                    plays: 2750
-                },
-                {
-                    id: 5,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'Indie Gems',
-                    artist: 'Indie Stars',
-                    album: 'Hidden Treasures',
-                    songsCount: 20,
-                    duration: '1h 45m',
-                    plays: 1200
-                },
-                {
-                    id: 6,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'Electronic Vibes',
-                    artist: 'DJ Spectrum',
-                    album: 'Electro Beats',
-                    songsCount: 35,
-                    duration: '2h 5m',
-                    plays: 1800
-                },
-                {
-                    id: 7,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'Hip-Hop Hits',
-                    artist: 'Various Artists',
-                    album: 'Rap Royale',
-                    songsCount: 45,
-                    duration: '2h 30m',
-                    plays: 2900
-                },
-                {
-                    id: 8,
-                    image: '/assets/images/jimi.jpg',
-                    title: 'Syrian Hits',
-                    artist: 'Various Artists',
-                    album: 'Syria Royale',
-                    songsCount: 45,
-                    duration: '2h 30m',
-                    plays: 2900
+const Profile = () => {
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [currentView, setCurrentView] = useState('overview');
+
+    // Missing calculateDuration function
+    const calculateDuration = (songs = []) => {
+        return songs.reduce((total, song) => total + (song.duration || 0), 0);
+    };
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const userId = localStorage.getItem('userId');
+                if (!userId) {
+                    throw new Error('User ID not found');
                 }
-            ],
-            currentView: 'overview',
-            following: [
-                { id: 1, avatarUrl: '/assets/images/avatar.png', username: 'Gordon', friendsCount: 100 },
-                { id: 2, avatarUrl: '/assets/images/avatar.png', username: 'Garry', friendsCount: 150 },
-            ],
-            followers: [
-                { id: 3, avatarUrl: '/assets/images/avatar.png', username: 'Luke', friendsCount: 80 },
-                { id: 4, avatarUrl: '/assets/images/avatar.png', username: 'Dan', friendsCount: 120 },
-            ]
+
+                const response = await getUser(userId);
+                setUserData(response.data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
         };
-    }
-    handleNavClick = (view) => {
-        this.setState({ currentView: view });
+
+        fetchUserData();
+    }, []);
+
+    const handleProfileUpdate = async (updatedUser) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Authentication token not found');
+            }
+
+            const response = await fetch(`/api/users/${userData?._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedUser)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to update profile');
+            }
+
+            const data = await response.json();
+            setUserData(data.data);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    const handlePlaylistCreation = async (newPlaylist) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('Authentication token not found');
+            }
+
+            const response = await fetch('/api/playlists', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newPlaylist)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to create playlist');
+            }
+
+            // Refresh user data to get updated playlists
+            const updatedUserData = await getUser(userData._id);
+            setUserData(updatedUserData.data);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    const renderPlaylists = () => (
+        <div className="playlists-grid">
+            {userData?.playlists?.map(playlist => (
+                <PlaylistPreview
+                    key={playlist._id}
+                    image={playlist.image}
+                    title={playlist.title}
+                    artist={userData.username}
+                    songsCount={playlist.songs?.length || 0}
+                    duration={calculateDuration(playlist.songs)}
+                    plays={playlist.plays || 0}
+                />
+            )) || []}
+        </div>
+    );
+
+    if (loading) {
+        return <div className="loading">Loading...</div>;
     }
 
-    handleProfileUpdate = (updatedUser) => {
-        this.setState({ user: { ...this.state.user, ...updatedUser } });
+    if (error) {
+        return <div className="error">Error: {error}</div>;
     }
 
-    handlePlaylistCreation = (newPlaylist) => {
-        this.setState(prevState => ({
-            playlists: [...prevState.playlists, newPlaylist]
-        }));
+    if (!userData) {
+        return <div className="error">No user data found</div>;
     }
-    render() {
-        const { user, playlists, currentView, following, followers } = this.state;
 
-        return (
-            <div className="profile-container">
-                <Navbar />
-                <header className="profile-header">
-                    <div className="profile-image">
-                        <img src='/assets/images/avatar.png' alt={user.name} />
+    return (
+        <div className="profile-container">
+            <Navbar />
+            <header className="profile-header">
+                <div className="profile-image">
+                    <img
+                        src={userData.profilePicture || '/assets/images/avatar.png'}
+                        alt={userData.username}
+                    />
+                </div>
+                <div className="profile-info">
+                    <h1 className="user-name">{userData.username}</h1>
+                    <div className="user-stats">
+                        <span>{userData.friends?.length || 0} Friends</span>
+                        <span>{userData.playlists?.length || 0} Playlists</span>
                     </div>
-                    <div className="profile-info">
-                        <h1 className="user-name">{user.name}</h1>
+                </div>
+            </header>
+
+            <nav className="profile-nav">
+                <ul>
+                    {['overview', 'playlists', 'following', 'settings', 'create-playlist'].map((view) => (
+                        <li
+                            key={view}
+                            className={currentView === view ? 'active' : ''}
+                            onClick={() => setCurrentView(view)}
+                        >
+                            {view === 'following'
+                                ? `FRIENDS (${userData.friends?.length || 0})`
+                                : view.toUpperCase().replace('-', ' ')}
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
+            {currentView === 'overview' && (
+                <section className="public-playlists">
+                    <div className="section-header">
+                        <h2>Public Playlists</h2>
+                        <button
+                            className="see-all"
+                            onClick={() => setCurrentView('playlists')}
+                        >
+                            SEE ALL
+                        </button>
                     </div>
-                </header>
+                    {renderPlaylists()}
+                </section>
+            )}
 
-                <nav className="profile-nav">
-                    <ul>
-                        <li className={currentView === 'overview' ? 'active' : ''} onClick={() => this.handleNavClick('overview')}>OVERVIEW</li>
-                        <li className={currentView === 'playlists' ? 'active' : ''} onClick={() => this.handleNavClick('playlists')}>PUBLIC PLAYLISTS</li>
-                        <li className={currentView === 'following' ? 'active' : ''} onClick={() => this.handleNavClick('following')}>FOLLOWING ({user.following})</li>
-                        <li className={currentView === 'followers' ? 'active' : ''} onClick={() => this.handleNavClick('followers')}>FOLLOWERS ({user.followers})</li>
-                        <li className={currentView === 'settings' ? 'active' : ''} onClick={() => this.handleNavClick('settings')}>SETTINGS</li>
-                        <li className={currentView === 'create-playlist' ? 'active' : ''} onClick={() => this.handleNavClick('create-playlist')}>CREATE PLAYLIST</li>
-                    </ul>
-                </nav>
+            {currentView === 'playlists' && (
+                <section className="public-playlists">
+                    <div className="section-header">
+                        <h2>Public Playlists</h2>
+                    </div>
+                    {renderPlaylists()}
+                </section>
+            )}
 
-                {currentView === 'overview' && (
-                    <section className="public-playlists">
-                        <div className="section-header">
-                            <h2>Public Playlists</h2>
-                            <button className="see-all">SEE ALL</button>
-                        </div>
-                        <div className="playlists-grid">
-                            {playlists.map(playlist => (
-                                <PlaylistPreview
-                                    key={playlist.id}
-                                    image={playlist.image}
-                                    title={playlist.title}
-                                    artist={playlist.artist}
-                                    album={playlist.album}
-                                    songsCount={playlist.songsCount}
-                                    duration={playlist.duration}
-                                    plays={playlist.plays}
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
+            {currentView === 'following' && (
+                <FriendList
+                    friends={userData.friends || []}
+                    type="Friends"
+                />
+            )}
 
-                {currentView === 'playlists' && (
-                    <section className="public-playlists">
-                        <div className="section-header">
-                            <h2>Public Playlists</h2>
-                        </div>
-                        <div className="playlists-grid">
-                            {playlists.map(playlist => (
-                                <PlaylistPreview
-                                    key={playlist.id}
-                                    image={playlist.image}
-                                    title={playlist.title}
-                                    artist={playlist.artist}
-                                    album={playlist.album}
-                                    songsCount={playlist.songsCount}
-                                    duration={playlist.duration}
-                                    plays={playlist.plays}
-                                />
-                            ))}
-                        </div>
-                    </section>
-                )}
+            {currentView === 'settings' && (
+                <ProfileSettings
+                    user={userData}
+                    onUpdateProfile={handleProfileUpdate}
+                />
+            )}
 
-                {currentView === 'following' && (
-                    <FriendList friends={following} type="Following" />
-                )}
-
-                {currentView === 'followers' && (
-                    <FriendList friends={followers} type="Followers" />
-                )}
-
-                {currentView === 'settings' && (
-                    <ProfileSettings user={user} onUpdateProfile={this.handleProfileUpdate} />
-                )}
-
-                {currentView === 'create-playlist' && (
-                    <CreatePlaylist onCreatePlaylist={this.handlePlaylistCreation} />
-                )}
-            </div>
-        );
-    }
-}
+            {currentView === 'create-playlist' && (
+                <CreatePlaylist
+                    onCreatePlaylist={handlePlaylistCreation}
+                />
+            )}
+        </div>
+    );
+};
 
 export default Profile;
