@@ -5,12 +5,13 @@
   "main": "frontend/src/index.js",
   "type": "module",
   "scripts": {
-    "build": "webpack && babel backend/server.js -d backend/dist",
+    "build": "webpack && (test -f backend/server.js && babel backend/server.js -d backend/dist || echo 'Warning: backend/server.js not found')",
     "start": "npm run build && node --experimental-specifier-resolution=node backend/dist/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "docker": "^1.0.0",
     "express": "^4.19.2",
     "gsap": "^3.12.5",
