@@ -1,5 +1,4 @@
 import { API_BASE_URL } from './config.js';
-
 // Helper function to get auth token
 const getAuthToken = () => localStorage.getItem('token');
 
@@ -20,6 +19,7 @@ const apiCall = async (endpoint, options = {}) => {
     });
 
     const data = await response.json();
+    console.log('API Response:', data); // Debug log
 
     if (!response.ok) {
         throw new Error(data.message || 'API request failed');
@@ -27,7 +27,6 @@ const apiCall = async (endpoint, options = {}) => {
 
     return data;
 };
-
 // User-related API functions
 export const getUser = async (userId) => {
     if (!userId) {
@@ -67,7 +66,7 @@ export const getUserFriends = async (userId) => {
     return apiCall(`/users/${userId}/friends`);
 };
 
-// New function for searching users
+// Updated search function with better error handling and debugging
 export const searchUsers = async (searchQuery) => {
     if (!searchQuery) {
         return { data: [] };

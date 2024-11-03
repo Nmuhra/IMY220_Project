@@ -1,76 +1,46 @@
-import React from 'react';
-import './styles/CreatePlaylist.css';
+// CreatePlaylist.js
+import React, { useState } from 'react';
 
-class CreatePlaylist extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: '',
-            description: '',
-            isPublic: true,
-            coverImage: null
+const CreatePlaylist = ({ onCreatePlaylist, userId }) => { // Pass userId as a prop
+    const [title, setTitle] = useState('');
+    const [isPublic, setIsPublic] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Create playlist data with user ID as creator
+        const playlistData = {
+            title,
+            creator: userId,
+            isPublic,
         };
-    }
 
-    handleInputChange = (event) => {
-        const { name, value, type, checked } = event.target;
-        const inputValue = type === 'checkbox' ? checked : value;
-        this.setState({ [name]: inputValue });
-    }
+        onCreatePlaylist(playlistData);  // Pass playlist data to the parent handler
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.props.onCreatePlaylist(this.state);
-        this.setState({
-            title: '',
-            description: '',
-            isPublic: true,
-            coverImage: null
-        });
-    }
+        setTitle('');  // Clear fields after submission
+        setIsPublic(false);
+    };
 
-    render() {
-        return (
-            <div className="playlist-creation">
-                <h2>Create New Playlist</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="title">Playlist Title:</label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value={this.state.title}
-                            onChange={this.handleInputChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="description">Description:</label>
-                        <textarea
-                            id="description"
-                            name="description"
-                            value={this.state.description}
-                            onChange={this.handleInputChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="isPublic">
-                            <input
-                                type="checkbox"
-                                id="isPublic"
-                                name="isPublic"
-                                checked={this.state.isPublic}
-                                onChange={this.handleInputChange}
-                            />
-                            Make playlist public
-                        </label>
-                    </div>
-                    <button type="submit">Create Playlist</button>
-                </form>
-            </div>
-        );
-    }
-}
+    return (
+        <form onSubmit={handleSubmit} className="create-playlist-form">
+            <input
+                type="text"
+                placeholder="Playlist Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+            />
+            <label>
+                <input
+                    type="checkbox"
+                    checked={isPublic}
+                    onChange={(e) => setIsPublic(e.target.checked)}
+                />
+                Make Public
+            </label>
+            <button type="submit">Create Playlist</button>
+        </form>
+    );
+};
 
 export default CreatePlaylist;

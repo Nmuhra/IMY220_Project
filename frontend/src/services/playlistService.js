@@ -43,6 +43,8 @@ export const getAllPlaylists = async () => {
     }
 };
 
+
+
 export const addSongToPlaylist = async (playlistId, songId) => {
     try {
         const response = await fetch(`${API_BASE_URL}/playlists/${playlistId}/songs`, {

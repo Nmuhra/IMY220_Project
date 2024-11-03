@@ -1,0 +1,114 @@
+.song-preview-container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.song-preview-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.song-preview-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* 1:1 Aspect Ratio */
+    margin-bottom: 12px;
+}
+
+.song-preview-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.play-overlay-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.song-preview-container:hover .play-overlay-button {
+    opacity: 1;
+}
+
+.play-icon {
+    color: white;
+}
+
+.song-preview-info {
+    padding: 8px 0;
+}
+
+.song-preview-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.song-preview-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artist-preview-info {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.artist-preview-image {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.artist-preview-name {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.song-preview-details {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.separator {
+    margin: 0 8px;
+    color: #999;
+}
+
+.song-preview-date {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 8px;
+}
