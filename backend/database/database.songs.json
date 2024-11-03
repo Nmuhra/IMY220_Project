@@ -1,0 +1,186 @@
+[{
+  "_id": {
+    "$oid": "66fd12bd504f5833a1556c03"
+  },
+  "title": "Bohemian Rhapsody",
+  "artist": "Queen",
+  "album": "A Night at the Opera",
+  "duration": 354,
+  "uploadedBy": {
+    "$oid": "66fd12b7504f5833a1556c01"
+  }
+},
+{
+  "_id": {
+    "$oid": "66fd12bd504f5833a1556c05"
+  },
+  "title": "Billie Jean",
+  "artist": "Michael Jackson",
+  "album": "Thriller",
+  "duration": 294,
+  "uploadedBy": {
+    "$oid": "66fd12b7504f5833a1556c01"
+  }
+},
+{
+  "_id": {
+    "$oid": "66fd12bd504f5833a1556c04"
+  },
+  "title": "Imagine",
+  "artist": "John Lennon",
+  "album": "Imagine",
+  "duration": 183,
+  "uploadedBy": {
+    "$oid": "66fd12b7504f5833a1556c01"
+  }
+},
+{
+  "_id": {
+    "$oid": "672055ea7ea2b82ae28a0a9b"
+  },
+  "title": "Sonne",
+  "artist": "Rammstein",
+  "album": "Sonne",
+  "duration": 3,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "672796db362d7009c30adc4f"
+  },
+  "title": "Back to black",
+  "artist": "amy winehouse",
+  "album": "Spyfalls",
+  "duration": 300,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "672796fa362d7009c30adc51"
+  },
+  "title": "Eye of the tiger",
+  "artist": "Survivor",
+  "album": "7clouds",
+  "duration": 280,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279711362d7009c30adc53"
+  },
+  "title": "Me and the devil",
+  "artist": "Soap&Skin",
+  "album": "Moxon",
+  "duration": 250,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279729362d7009c30adc55"
+  },
+  "title": "Like a stone",
+  "artist": "AudioSlave",
+  "album": "lavvender",
+  "duration": 230,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727973e362d7009c30adc57"
+  },
+  "title": "Hearts on fire",
+  "artist": "Rocky",
+  "album": "Rocky",
+  "duration": 180,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279759362d7009c30adc59"
+  },
+  "title": "The Thrill is gone",
+  "artist": "B.B. King",
+  "album": "King",
+  "duration": 180,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727976c362d7009c30adc5b"
+  },
+  "title": "I wonder",
+  "artist": "Kanye West",
+  "album": "Topic",
+  "duration": 180,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727a111808d7bf1e4b108bf"
+  },
+  "title": "Paranoid",
+  "artist": "Black Sabbath",
+  "album": "Paranoid",
+  "duration": 212,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727a17c808d7bf1e4b108c5"
+  },
+  "title": "paranoid",
+  "artist": "black sabbath",
+  "album": "Paranoid",
+  "duration": 122,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727a8eee2aa8e5665397d5c"
+  },
+  "title": "Voodoo Child",
+  "artist": "Jimi Hendrix",
+  "album": "slight return",
+  "duration": 129,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727a8fbe2aa8e5665397d5e"
+  },
+  "title": "Voodoo Child",
+  "artist": "Jimi Hendrix",
+  "album": "slight return",
+  "duration": 120,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727a9e5e2aa8e5665397d60"
+  },
+  "title": "sasas",
+  "artist": "asas",
+  "album": "asa",
+  "duration": 120,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727b067e2aa8e5665397d91"
+  },
+  "title": "sasas",
+  "artist": "asa",
+  "album": "sasa",
+  "duration": 111,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727c8dfe2aa8e5665397dac"
+  },
+  "title": "mnew song",
+  "artist": "Jimi Hendrix",
+  "album": "slight return",
+  "duration": 212,
+  "__v": 0
+}]

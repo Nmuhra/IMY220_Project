@@ -1,0 +1,266 @@
+[{
+  "_id": {
+    "$oid": "66fd12c3504f5833a1556c06"
+  },
+  "name": "John's Rock Classics",
+  "creator": {
+    "$oid": "66fd12b7504f5833a1556c01"
+  },
+  "songs": [
+    {
+      "$oid": "66fd12bd504f5833a1556c03"
+    },
+    {
+      "$oid": "66fd12bd504f5833a1556c05"
+    }
+  ],
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-10-02T09:30:43.287Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6722079e9019bb29897fa1c6"
+  },
+  "title": "open mat",
+  "description": "",
+  "songs": [
+    {
+      "$oid": "672055ea7ea2b82ae28a0a9b"
+    }
+  ],
+  "creator": {
+    "$oid": "6711d18d21cd6fff50770f0a"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-10-30T10:17:02.605Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "67279901808d7bf1e4b10876"
+  },
+  "title": "Metal",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:38:41.672Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727990a808d7bf1e4b10878"
+  },
+  "title": "Country",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:38:50.676Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279910808d7bf1e4b1087a"
+  },
+  "title": "Alternative ",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:38:56.508Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279916808d7bf1e4b1087c"
+  },
+  "title": "House",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:02.071Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727991d808d7bf1e4b1087e"
+  },
+  "title": "Hip_Hop",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:09.192Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279920808d7bf1e4b10880"
+  },
+  "title": "Pop",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:12.774Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727992d808d7bf1e4b10882"
+  },
+  "title": "Classical",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:25.351Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279932808d7bf1e4b10884"
+  },
+  "title": "Instrumental",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:30.079Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279935808d7bf1e4b10886"
+  },
+  "title": "Lofi",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:33.697Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727993a808d7bf1e4b10888"
+  },
+  "title": "Binural beats",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:38.827Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279942808d7bf1e4b1088a"
+  },
+  "title": "Workout playlist",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T15:39:46.746Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67279e3b808d7bf1e4b108ad"
+  },
+  "title": "Arabic",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T16:00:59.808Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727c8c6e2aa8e5665397da2"
+  },
+  "title": "my playlist",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T19:02:30.595Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727c8d0e2aa8e5665397daa"
+  },
+  "title": "new playlist",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": true,
+  "createdAt": {
+    "$date": "2024-11-03T19:02:40.284Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6727e95b446962d5b0268db5"
+  },
+  "title": "housesss",
+  "songs": [],
+  "creator": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "isPublic": false,
+  "createdAt": {
+    "$date": "2024-11-03T21:21:31.560Z"
+  },
+  "__v": 0
+}]

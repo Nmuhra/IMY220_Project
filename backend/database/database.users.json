@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "66fd12b7504f5833a1556c01"
+  },
+  "username": "John_Danaher",
+  "email": "john@example.com",
+  "password": "hashed_password_1",
+  "profilePicture": "john.jpg",
+  "friends": [
+    "66fd12b7504f5833a1556c02"
+  ],
+  "playlists": [
+    {
+      "$oid": "66fd12c3504f5833a1556c06"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fd12b7504f5833a1556c02"
+  },
+  "username": "jane_smith",
+  "email": "jane@example.com",
+  "password": "hashed_password_2",
+  "profilePicture": "jane.jpg",
+  "friends": [],
+  "playlists": [
+    {
+      "$oid": "66fd12c3504f5833a1556c07"
+    }
+  ]
+},
+{
+  "_id": "66fd12b7504f5833a1556c01",
+  "username": "Gordon_Ryan",
+  "email": "gordon@example.com",
+  "password": "hashed_password_2",
+  "profilePicture": "gordon.jpg",
+  "friends": [],
+  "playlists": [
+    "66fd12c3504f5833a1556c06"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fe036afb5dc7165612417a"
+  },
+  "username": "Garry_Tonon",
+  "email": "Garry@example.com",
+  "password": "$2b$10$ogzMv9kptNJgMQzOsajxhuJ0zTiwxX7yXZMAJUqPgTk1hwaAs0DyK",
+  "friends": [],
+  "playlists": []
+},
+{
+  "_id": {
+    "$oid": "66fe09e5fe2aadde28f3f685"
+  },
+  "username": "Giancarlo",
+  "email": "Giancarlo@gmail.com",
+  "password": "$2b$10$x/FTVLgvkMakEuvG.ANgquU.7LGf7EVBAoPaeNa9bzretPASl0SSa",
+  "friends": [
+    {
+      "$oid": "67221009ad8e303485045a4e"
+    }
+  ],
+  "playlists": [],
+  "__v": 1,
+  "profilePicture": ""
+},
+{
+  "_id": {
+    "$oid": "66fe49047073e8fe4af9bb26"
+  },
+  "username": "Phil",
+  "email": "phil@gmail.com",
+  "password": "$2b$10$BPiII3y0jpUlA.8dSdVVXe/XZpr3/2PZzX.NUE3w.4PHXL7aqyiB2",
+  "friends": [],
+  "playlists": []
+},
+{
+  "_id": {
+    "$oid": "6711d18d21cd6fff50770f0a"
+  },
+  "username": "nabegh",
+  "email": "nabegh.muhra25@gmail.com",
+  "password": "$2b$10$awL6Cxv9OyN/RGu5CqR.UeuEdfa0iICOcrm1l0LuWfp16wjk7HiDS",
+  "friends": [],
+  "playlists": []
+},
+{
+  "_id": {
+    "$oid": "67221009ad8e303485045a4e"
+  },
+  "username": "u23661268",
+  "email": "u23661268@tuks.co.za",
+  "password": "$2b$10$HLckoiILMYO1ZSLgeBfMHeqPoZQ1JgaM6LbUd4hPMv5kWFFHHFMXC",
+  "profilePicture": "",
+  "friends": [
+    {
+      "$oid": "66fe09e5fe2aadde28f3f685"
+    }
+  ],
+  "playlists": [],
+  "__v": 1
+}]

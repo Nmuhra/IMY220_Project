@@ -1,36 +1,43 @@
+version: '3.8'
+
 services:
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
+  mongodb:
+    image: mongo:latest
+    restart: always
     ports:
-      - "3000:3000" # Changed from 5000:5000
+      - "2999:2999"
     volumes:
-      - ./frontend:/app/frontend
-      - /app/node_modules
-    depends_on:
-      - backend
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
 
   backend:
     build:
       context: .
-      dockerfile: Dockerfile.backend
+      dockerfile: backend/Dockerfile
     ports:
-      - "1337:1337" # Using your existing backend port
+      - "5001:5000"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_URI=mongodb://root:example@mongodb:27017/
+      - NODE_ENV=development
     volumes:
       - ./backend:/app/backend
-      - /app/node_modules
-    depends_on:
-      - mongo
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/your_database
+      - /app/backend/node_modules
 
-  mongo:
-    image: mongo:latest
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
-      - "27017:27017"
+      - "3000:3000"
+    depends_on:
+      - backend
     volumes:
-      - mongo-data:/data/db
+      - ./frontend:/app/frontend
+      - /app/frontend/node_modules
 
 volumes:
-  mongo-data:
+  mongodb_data:

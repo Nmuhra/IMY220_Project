@@ -1,24 +1,13 @@
-# Use a Node.js base image
-FROM node:18
+FROM node:18-alpine
 
-# Set working directory in the container
-WORKDIR /app
+WORKDIR /app/backend
 
-# Copy package.json files from backend/api directory
-COPY api/package*.json ./
+COPY package*.json ./
 
-# Install dependencies
 RUN npm install
 
-RUN npm rebuild bcrypt --build-from-source
+COPY . .
 
-
-
-# Copy the entire api directory
-COPY api/ ./
-
-# Expose backend port
 EXPOSE 5000
 
-# Start the backend server
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
