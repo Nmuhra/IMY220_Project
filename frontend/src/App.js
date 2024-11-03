@@ -25,6 +25,7 @@ class App extends React.Component {
           <Route path='/' element={<Splash />} />
           <Route path='/home' element={<Home />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/profile/:id' element={<Profile />} />
           <Route path='/playlist' element={<PlaylistPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />

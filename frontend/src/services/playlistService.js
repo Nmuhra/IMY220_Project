@@ -1,5 +1,15 @@
 import { API_BASE_URL, getAuthToken } from './config.js';
 
+export const searchPlaylists = async (searchQuery) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/playlists/search?query=${encodeURIComponent(searchQuery)}`);
+        return await response.json();
+    } catch (error) {
+        console.error('Error searching playlists:', error);
+        throw error;
+    }
+};
+
 export const createPlaylist = async (playlistData) => {
     try {
         const response = await fetch(`${API_BASE_URL}/playlists`, {

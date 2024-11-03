@@ -16,52 +16,41 @@ class Navbar extends Component {
         };
         this.searchTimeout = null;
     }
-
     handleSearchChange = async (event) => {
         const value = event.target.value;
         this.setState({
             searchQuery: value,
             isSearching: true,
             showResults: true,
-            error: null
+            error: null,
         });
 
-        // Clear existing timeout
-        if (this.searchTimeout) {
-            clearTimeout(this.searchTimeout);
-        }
+        if (this.searchTimeout) clearTimeout(this.searchTimeout);
 
-        // Don't search if the input is empty
         if (!value.trim()) {
-            this.setState({
-                searchResults: [],
-                isSearching: false,
-                showResults: false
-            });
+            this.setState({ searchResults: [], isSearching: false, showResults: false });
             return;
         }
 
-        // Set new timeout for debouncing
         this.searchTimeout = setTimeout(async () => {
             try {
-                console.log('Initiating search for:', value); // Debug log
                 const response = await searchUsers(value);
-                console.log('Search results:', response); // Debug log
+                if (response.error) throw new Error(response.error);
 
                 this.setState({
                     searchResults: response.data || [],
-                    isSearching: false
+                    isSearching: false,
                 });
             } catch (error) {
                 console.error('Search failed:', error);
                 this.setState({
                     searchResults: [],
                     isSearching: false,
-                    error: 'Failed to search users'
+                    error: 'Failed to search users',
                 });
             }
         }, 300);
-    }
+    };
 
     handleClickOutside = (event) => {
         if (!event.target.closest('.navbar-search')) {

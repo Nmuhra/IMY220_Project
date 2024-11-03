@@ -8,7 +8,7 @@ body {
 }
 
 .splash-container {
-  background-image: url("../../assets/images/TuneME.png");
+  background-image: url('../../assets/images/TuneME.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

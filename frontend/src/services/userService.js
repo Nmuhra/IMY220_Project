@@ -68,17 +68,13 @@ export const getUserFriends = async (userId) => {
 
 // Updated search function with better error handling and debugging
 export const searchUsers = async (searchQuery) => {
-    if (!searchQuery) {
-        return { data: [] };
-    }
+    if (!searchQuery) return { data: [] };
 
     try {
-        console.log('Searching for:', searchQuery); // Debug log
         const response = await apiCall(`/users/search?username=${encodeURIComponent(searchQuery)}`);
-        console.log('Search response:', response); // Debug log
         return response;
     } catch (error) {
         console.error('Error searching users:', error);
-        throw error;
+        return { data: [], error: 'Error retrieving search results' };
     }
 };

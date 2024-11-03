@@ -55,7 +55,7 @@ class SongPreview extends React.Component {
                     </button>
                 </div>
                 <div className="song-preview-info">
-                    <span className="song-preview-label">{title}</span>
+                    <span className="song-preview-label"></span>
                     <h3 className="song-preview-title">{title}</h3>
                     <div className="artist-preview-info">
                         <img

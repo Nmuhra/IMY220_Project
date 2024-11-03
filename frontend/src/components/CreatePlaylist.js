@@ -1,9 +1,10 @@
 // CreatePlaylist.js
 import React, { useState } from 'react';
 
-const CreatePlaylist = ({ onCreatePlaylist, userId }) => { // Pass userId as a prop
+const CreatePlaylist = ({ onCreatePlaylist }) => { // Pass userId as a prop
     const [title, setTitle] = useState('');
     const [isPublic, setIsPublic] = useState(false);
+    const userId = localStorage.getItem('userId');
 
     const handleSubmit = (e) => {
         e.preventDefault();

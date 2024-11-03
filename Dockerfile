@@ -1,30 +1,35 @@
-# Step 1: Use an official Node.js image as the base image
-FROM node:18-alpine
+# Build stage
+FROM node:18-alpine as build
 
-# Step 2: Set the working directory inside the container
 WORKDIR /app
 
-# Step 3: Copy package.json and package-lock.json (if available)
+# Copy package files
 COPY package*.json ./
 
-# Step 4: Install dependencies
+# Install dependencies
 RUN npm install
 
-# Step 5: Copy the rest of the project files into the container
+# Copy all files
 COPY . .
 
-# Step 6: Build the React app for production
+# Ensure the images directory exists
+RUN mkdir -p frontend/src/assets/images
+
+# Build the app
 RUN npm run build
 
-# Step 7: Use a lightweight web server to serve the React app
-# In this case, we are using `nginx` to serve the static files
+# Production stage
 FROM nginx:alpine
 
-# Step 8: Copy the build folder to the nginx html directory
-COPY --from=0 /app/build /usr/share/nginx/html
+# Copy built files from build stage - updated to match your webpack output path
+COPY --from=build /app/frontend/public/bundle.js /usr/share/nginx/html/
 
-# Step 9: Expose the port the app will run on
+# Copy your index.html if it exists in frontend/public
+COPY --from=build /app/frontend/public/index.html /usr/share/nginx/html/
+
+# Copy static assets
+COPY --from=build /app/frontend/src/assets/images /usr/share/nginx/html/assets/images
+
 EXPOSE 80
 
-# Step 10: Start nginx server
 CMD ["nginx", "-g", "daemon off;"]
